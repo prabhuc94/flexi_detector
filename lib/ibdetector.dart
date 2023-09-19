@@ -38,6 +38,9 @@ class IBDetector {
       _timer = Timer(const Duration(minutes: 1), () {
         final now = DateTime.now();
         final difference = now.difference(_lastActivityTime);
+        if (kDebugMode) {
+          print("IBDetector:[${DateTime.now().toLocal()}] DIFFERENCE[${difference}] BREAK[$_breakDuration] IDLE[$_idleDuration]");
+        }
         if (difference >= _breakDuration &&
             _currentStatus != ActivityStatus.ACTIVE &&
             _currentStatus != ActivityStatus.BREAK) {
