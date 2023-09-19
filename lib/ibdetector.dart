@@ -35,7 +35,7 @@ class IBDetector {
       if(kDebugMode) {
         print("IBDetector:[${DateTime.now().toLocal()}] DETECTION STARTED");
       }
-      _timer = Timer(const Duration(minutes: 1), () {
+      _timer = Timer.periodic(const Duration(minutes: 1), (_) {
         final now = DateTime.now();
         final difference = now.difference(_lastActivityTime);
         if (kDebugMode) {
