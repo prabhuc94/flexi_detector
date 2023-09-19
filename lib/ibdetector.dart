@@ -39,7 +39,11 @@ class IBDetector {
         final now = DateTime.now();
         final difference = now.difference(_lastActivityTime);
         if (kDebugMode) {
-          print("IBDetector:[${DateTime.now().toLocal()}] DIFFERENCE[${difference}] BREAK[$_breakDuration] IDLE[$_idleDuration]");
+          print("IBDetector:[${DateTime.now().toLocal()}] DIFFERENCE[${difference}] BREAK[$_breakDuration] IDLE[$_idleDuration] BREAK-CHECK[${(difference >= _breakDuration &&
+              _currentStatus != ActivityStatus.ACTIVE &&
+              _currentStatus != ActivityStatus.BREAK)}] IDLE-CHECK[${(difference >= _idleDuration &&
+              _currentStatus != ActivityStatus.IDLE &&
+              _currentStatus != ActivityStatus.BREAK)}]");
         }
         if (difference >= _breakDuration &&
             _currentStatus != ActivityStatus.ACTIVE &&
